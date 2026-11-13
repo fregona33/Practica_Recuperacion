@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\2905946\\RiderProjects\\ActividadBloque1\\ActividadBloque1\\ActividadBloque1.csproj",
-      "projectName": "ActividadBloque1",
-      "projectPath": "C:\\Users\\2905946\\RiderProjects\\ActividadBloque1\\ActividadBloque1\\ActividadBloque1.csproj",
+      "projectUniqueName": "C:\\Users\\2905946\\RiderProjects\\ActividadBloque1\\Expendedora\\Expendedora.csproj",
+      "projectName": "Expendedora",
+      "projectPath": "C:\\Users\\2905946\\RiderProjects\\ActividadBloque1\\Expendedora\\Expendedora.csproj",
       "packagesPath": "C:\\Users\\2905946\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\2905946\\RiderProjects\\ActividadBloque1\\ActividadBloque1\\obj\\",
+      "outputPath": "C:\\Users\\2905946\\RiderProjects\\ActividadBloque1\\Expendedora\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

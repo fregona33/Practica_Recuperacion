@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActividadBloque1", "ActividadBloque1\ActividadBloque1.csproj", "{4E739384-4BFD-4000-B696-D03F813870DA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Expendedora", "Expendedora\Expendedora.csproj", "{4E739384-4BFD-4000-B696-D03F813870DA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Expendedora.Pruebas", "Expendedora.Pruebas\Expendedora.Pruebas.csproj", "{FE4466F4-3881-4DA0-8AC3-F15380CB79DD}"
 EndProject

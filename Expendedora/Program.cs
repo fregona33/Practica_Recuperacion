@@ -523,7 +523,7 @@ public class Program
                     break;
 
                 case 0:
-                    string? confirmacion = LeerEntrada("¿Quieres apagar la máquina? (S / N)");
+                    string? confirmacion = LeerEntrada("¿Quieres apagar la máquina? (S / N): ");
 
                     if (confirmacion is null)
                     {
