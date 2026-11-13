@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Expendedora.Pruebas")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+435ac23b9b3c788b776e30440ce091531e741ca0")]
 [assembly: System.Reflection.AssemblyProductAttribute("Expendedora.Pruebas")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Expendedora.Pruebas")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

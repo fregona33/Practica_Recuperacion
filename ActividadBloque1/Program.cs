@@ -19,6 +19,8 @@ public class Program
     private const int MONEDA_100 = 100;
     private const int MONEDA_200 = 200;
 
+    // TODO: Guardar el stock y las ventas en un archivo para conservarlos al iniciar.
+    
     private static int stockCafe = CAPACIDAD;
     private static int stockChocolate = CAPACIDAD;
     private static int stockCruasan = CAPACIDAD;
@@ -250,7 +252,7 @@ public class Program
 
         if (centimos == 0)
         {
-            return "Sin cambio.";
+            return "Sin cambio";
         }
 
         int[] monedas =
