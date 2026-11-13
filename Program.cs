@@ -332,6 +332,154 @@ public class Program
 
         recaudacion += Precio(producto);
     }
+
+    /// <summary>
+    /// Calcula el stock resultante de una reposición
+    /// </summary>
+    /// <param name="actual"></param>
+    /// <param name="cantidad"></param>
+    /// <param name="maximo"></param>
+    /// <returns>Stock después de la reposición</returns>
+    /// <exception cref="ArgumentOutOfRangeException">La cantidad es negativa o el stock resultante supera la capacidad</exception>
+    public static int NuevoStock(int actual, int cantidad, int maximo)
+    {
+        if (cantidad < 0 || (long)actual + cantidad > maximo)
+        {
+            throw new ArgumentOutOfRangeException(
+                nameof(cantidad),
+                "La cantidad no puede ser negativa ni superar la capacidad.");
+        }
+
+        return actual + cantidad;
+    }
+
+    /// <summary>
+    /// Permite reponer unidades de un producto.
+    /// </summary>
+    /// <returns>True si se completa de forma correcta, false si se acaba la entrada.</returns>
+    static bool Reponer()
+    {
+        Console.WriteLine("============ REPONER ============");
+        Console.WriteLine($"1. Café     Stock: {stockCafe}");
+        Console.WriteLine($"2. Chocolate     Stock: {stockChocolate}");
+        Console.WriteLine($"3. Cruasán     Stock: {stockCruasan}");
+
+        string? entrada = LeerEntrada("Producto: ");
+
+        if (entrada == null)
+        {
+            Console.WriteLine("No hay más entrada. La máquina se apaga");
+            return false;
+        }
+
+        if (!int.TryParse(entrada, out int opcion))
+        {
+            Console.WriteLine("Debes escribir un número. ");
+            return true;
+        }
+
+        if (opcion < (int)Producto.Cafe || opcion > (int)Producto.Cruasan)
+        {
+            Console.WriteLine("Producto no válido. ");
+            return true;
+        }
+
+        if (opcion == 0)
+            return true;
+
+        Producto producto = (Producto)opcion;
+        int capacidad = ObtenerStock(producto);
+        
+        Console.WriteLine($"Al producto le quedan {capacidad} unidades. ");
+        string? repuesto = LeerEntrada("Unidades a añadir: ");
+
+        if (repuesto == null)
+        {
+            Console.WriteLine("No hay entrada. Se apaga la máquina. ");
+            return false;
+        }
+
+        if (!int.TryParse(repuesto, out int cantidad))
+        {
+            Console.WriteLine("Se debe poner un número. ");
+            return true;
+        }
+
+        try
+        {
+            int stockNuevo = NuevoStock(
+                capacidad, cantidad, CAPACIDAD);
+
+            switch (producto)
+            {
+                case Producto.Cafe:
+                    stockCafe = stockNuevo;
+                    break;
+
+                case Producto.Chocolate:
+                    stockChocolate = stockNuevo;
+                    break;
+
+                case Producto.Cruasan:
+                    stockCruasan = stockNuevo;
+                    break;
+            }
+            Console.WriteLine($"Operacion realizada. Stock de {producto}: {stockNuevo}");
+        }
+        catch (ArgumentOutOfRangeException ex)
+        {
+            Console.WriteLine($"La cantidad debe ser cero o positiva y el stock no debe superar {CAPACIDAD}. ");
+        }
+
+        return true;
+    }
+
+    /// <summary>
+    /// Muestra el inventario, la recaudación y las estadísticas de las ventas.
+    /// </summary>
+    static void MostrarInforme()
+    {
+        Console.WriteLine("============ INFORME ============");
+        Console.WriteLine($"{"Producto",-14} {"Precio",10} {"Ventas",8} {"Stock",8}");
+        Console.WriteLine($"{"Café",-14} {Formatear(Precio(Producto.Cafe)),10}" +
+                          $"{ventasCafe,8} {stockCafe,8}");
+        
+        Console.WriteLine($"{"Chocolate",-14} {Formatear(Precio(Producto.Chocolate)),10}" +
+                          $"{ventasChocolate,8} {stockChocolate,8}");
+
+        Console.WriteLine($"{"Cruasán",-14} {Formatear(Precio(Producto.Cruasan)),10}" +
+                          $"{ventasCruasan,8} {stockCruasan,8}");
+        
+        Console.WriteLine();
+        Console.WriteLine($"Recaudación: {Formatear(recaudacion)}");
+
+        string masVendido = "Café";
+        int mayorVentas = ventasCafe;
+
+        if (ventasChocolate > mayorVentas)
+        {
+            masVendido = "Chocolate";
+            mayorVentas = ventasChocolate;
+        }
+
+        if (ventasCruasan > mayorVentas)
+        {
+            masVendido = "Cruasán";
+        }
+        
+        Console.WriteLine($"Producto más vendido: {masVendido}");
+
+        int totalVentas = ventasChocolate + ventasCafe + ventasCruasan;
+        decimal mediaEuros = 0;
+
+        if (totalVentas > 0)
+        {
+            mediaEuros = recaudacion / (100m * totalVentas);
+        }
+        Console.WriteLine($"Importe medio por venta: {mediaEuros.ToString("C", ESPANOL)}");
+
+    }
+
     
     static void Main()
     {
@@ -365,11 +513,11 @@ public class Program
                     break;
 
                 case 2:
-                    Console.WriteLine("Has elegido Reponer. ");
+                    Reponer();
                     break;
 
                 case 3:
-                    Console.WriteLine("Has elegido Informe. ");
+                    MostrarInforme();
                     break;
 
                 case 0:
@@ -394,7 +542,7 @@ public class Program
     }
 }
 
-///<sumary> Productos disponibles de la máquina </summary>
+///<summary> Productos disponibles de la máquina </summary>
 public enum Producto
 {
     Cafe = 1,
